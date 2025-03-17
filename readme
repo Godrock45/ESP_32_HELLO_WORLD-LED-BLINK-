@@ -1,0 +1,65 @@
+# ESP32 LED Toggling Project
+
+This project demonstrates how to control multiple LEDs using an ESP32 microcontroller. The LEDs are toggled in an alternating pattern, creating a blinking effect. This project is a great introduction to GPIO control and basic embedded programming with the ESP32.
+
+## Table of Contents
+1. [Components Required](#components-required)
+2. [Circuit Diagram](#circuit-diagram)
+3. [Code Explanation](#code-explanation)
+4. [Setup Instructions](#setup-instructions)
+5. [How It Works](#how-it-works)
+6. [Troubleshooting](#troubleshooting)
+7. [Future Enhancements](#future-enhancements)
+8. [Conclusion](#conclusion)
+
+## Components Required
+| **Component**       | **Quantity** | **Description**                          |
+|----------------------|--------------|------------------------------------------|
+| ESP32 Development Board | 1            | Microcontroller for controlling the LEDs |
+| LEDs                 | 4            | Light-emitting diodes for visualization  |
+| Resistors (220Ω)     | 4            | Current-limiting resistors for the LEDs  |
+| Breadboard           | 1            | For connecting components                |
+| Jumper Wires         | Several      | For making connections                   |
+| USB Cable            | 1            | For power and programming the ESP32      |
+
+## Circuit Diagram
+![Circuit Diagram](circuit_diagram.png)
+
+## Code Explanation
+The code toggles the LEDs in an alternating pattern. Here's the breakdown:
+
+```cpp
+// Define GPIO pins for the LEDs
+int t1 = 5;  // GPIO pin for LED 1
+int t2 = 18; // GPIO pin for LED 2
+int t3 = 19; // GPIO pin for LED 3
+int t4 = 21; // GPIO pin for LED 4
+
+void setup() {
+  // Set all LED pins as outputs
+  pinMode(t1, OUTPUT);
+  pinMode(t2, OUTPUT);
+  pinMode(t3, OUTPUT);
+  pinMode(t4, OUTPUT);
+}
+
+void loop() {
+  static int i = 1;  // Use static to retain the value of i between loop() calls
+
+  if (i % 2 == 1) {
+    // Turn on t1 and t3, turn off t2 and t4
+    digitalWrite(t1, HIGH);
+    digitalWrite(t3, HIGH);
+    digitalWrite(t2, LOW);
+    digitalWrite(t4, LOW);
+  } else {
+    // Turn on t2 and t4, turn off t1 and t3
+    digitalWrite(t2, HIGH);
+    digitalWrite(t4, HIGH);
+    digitalWrite(t1, LOW);
+    digitalWrite(t3, LOW);
+  }
+
+  delay(500);  // Wait for 500ms
+  i++;  // Increment i to toggle between the two states
+}
