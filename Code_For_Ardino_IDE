@@ -1,0 +1,39 @@
+int t1=5;
+int t2=18;
+int t3=19;
+int t4=21;
+
+void setup()
+{
+  pinMode(t1, OUTPUT);
+  pinMode(t2, OUTPUT);
+  pinMode(t3, OUTPUT);
+  pinMode(t4, OUTPUT);
+}
+
+void loop()
+{
+  int i=1;
+  while(i>0)
+  {
+    if(i%2==1)
+    {
+    digitalWrite(t1,HIGH);
+    digitalWrite(t3,HIGH);
+    delay(500);
+    digitalWrite(t1,LOW);
+    digitalWrite(t3,LOW);
+
+  }
+  else
+  {
+    digitalWrite(t2,HIGH);
+    digitalWrite(t4,HIGH);
+    delay(500);
+    digitalWrite(t2,LOW);
+    digitalWrite(t4,LOW);
+  }
+  i++;
+  }
+  
+}
